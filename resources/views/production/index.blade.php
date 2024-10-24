@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <section class="mb-6">
-                    <header class="flex items-center justify-between">
+                    <header class="flex items-center justify-between mb-3">
                         <div>
                             <h2 class="text-lg font-medium text-gray-900">
                                 {{ __('Main Production Informations') }}
@@ -23,17 +23,18 @@
                             Create new
                         </a>
                     </header>
+
+                    <x-alert />
                     <!-- Search Form -->
                     <form action="{{ route('production.index') }}" method="GET" class="mt-4">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                             <div>
                                 <x-text-input
-                                    type="text"
-                                    name="buyer"
-                                    id="buyer"
-                                    placeholder="Search by Buyer"
+                                    type="date"
+                                    name="ps_date"
+                                    id="ps_date"
                                     class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-                                    :value="request('buyer')"
+                                    :value="request('ps_date')"
                                 />
                             </div>
                             <div>
@@ -48,11 +49,12 @@
                             </div>
                             <div>
                                 <x-text-input
-                                    type="date"
-                                    name="ps_date"
-                                    id="ps_date"
+                                    type="text"
+                                    name="buyer"
+                                    id="buyer"
+                                    placeholder="Search by Buyer"
                                     class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-                                    :value="request('ps_date')"
+                                    :value="request('buyer')"
                                 />
                             </div>
                             <div>
@@ -74,8 +76,6 @@
                     </form>
                 </section>
 
-                <x-alert />
-
                 <section>
                     <div class="mt-2 relative overflow-x-auto sm:rounded-lg">
                         <table class="w-full bg-white shadow-md rounded-xl border border-gray-300">
@@ -84,7 +84,7 @@
                                     <th class="py-3 px-4 text-left border-r border-gray-300">#</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">PS Date</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">PS</th>
-                                    <th class="py-3 px-4 text-left border-r border-gray-300">SST10</th>
+                                    <th class="py-3 px-4 text-left border-r border-gray-300">Style</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">Buyer</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">Qty</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">Image</th>
@@ -97,7 +97,7 @@
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $index + 1 }}.</td>
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->ps_date }}</td>
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->ps }}</td>
-                                        <td class="py-3 px-4 border-r border-gray-300">{{ $production->sst10 }}</td>
+                                        <td class="py-3 px-4 border-r border-gray-300">{{ $production->style }}</td>
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->buyer }}</td>
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->qty }}</td>
                                         <td class="py-3 px-4 border-r border-gray-300">

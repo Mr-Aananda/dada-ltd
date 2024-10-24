@@ -23,15 +23,15 @@
                             </div>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                            <h3 class="text-xl font-semibold mb-2">Total URLs (All Users)</h3>
+                            <h3 class="text-xl font-semibold mb-2">Total Production</h3>
                             <div class="flex justify-center items-center">
                                 <p
                                     class="text-2xl font-bold bg-white w-16 h-16 rounded-full flex justify-center items-center">
-                                    {{ $totalUrls }}
+                                    {{ $totalProductions }}
                                 </p>
                             </div>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+                        {{-- <div class="bg-gray-100 p-4 rounded-lg shadow-md">
                             <h3 class="text-xl font-semibold mb-2">Your Total Created URLs</h3>
                             <div class="flex justify-center items-center">
                                 <p
@@ -48,9 +48,8 @@
                                     {{ $totalClicks }}
                                 </p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductionRequest;
 use App\Repositories\Production\ProductionRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductionController extends Controller
@@ -65,6 +66,9 @@ class ProductionController extends Controller
         // Handle the image file upload
         $data = $request->validated(); // Fetch only validated data
 
+        // Add the user_id from the authenticated user
+        $data['user_id'] = Auth::id();
+
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('production_images', 'public');
         }
@@ -104,6 +108,7 @@ class ProductionController extends Controller
 
         // Fetch validated data
         $data = $request->validated();
+        $data['user_id'] = Auth::id();
 
         // Check if a new image is uploaded
         if ($request->hasFile('image')) {

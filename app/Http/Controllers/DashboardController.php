@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Production;
 use App\Models\Url;
 use App\Models\User;
 use Carbon\Carbon;
@@ -15,10 +16,11 @@ class DashboardController extends Controller
     public function index()
     {
         $totalUsers = User::count();
+        $totalProductions = Production::count();
         $totalUrls = Url::count();
         $userUrls = Url::where('user_id', auth()->id())->count();
         $totalClicks = Url::where('user_id', auth()->id())->sum('click_count');
 
-        return view('dashboard', compact('totalUsers', 'totalUrls', 'userUrls', 'totalClicks'));
+        return view('dashboard', compact('totalUsers', 'totalUrls', 'userUrls', 'totalClicks', 'totalProductions'));
     }
 }

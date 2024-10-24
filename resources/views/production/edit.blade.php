@@ -85,7 +85,7 @@
 
                             <!-- SD Date -->
                             <div class="w-1/3">
-                                <x-input-label for="sd_date" :value="__('SD Date')" />
+                                <x-input-label for="sd_date" :value="__('S/D Date')" />
                                 <x-text-input id="sd_date" class="block mt-1 w-full" type="date" name="sd_date" :value="old('sd_date', $production->sd_date)" />
                                 <x-input-error :messages="$errors->get('sd_date')" class="mt-2" />
                             </div>
