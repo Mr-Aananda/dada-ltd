@@ -24,8 +24,8 @@ return new class extends Migration
             $table->date('ps_date')->nullable();
             $table->string('sst10')->nullable();
             $table->string('style')->nullable();
-            $table->string('bayer_po')->nullable();
-            $table->string('bayer')->nullable();
+            $table->string('buyer_po')->nullable();
+            $table->string('buyer')->nullable();
             $table->date('sd_date')->nullable();
             $table->string('qty')->nullable();
             $table->string('cap_item')->nullable();
@@ -42,8 +42,8 @@ return new class extends Migration
             $table->string('eyelet_color')->nullable();
             $table->string('eyelet_position')->nullable();
             $table->string('visor_6')->nullable();
-            $table->string('visor_1/5')->nullable();
-            $table->string('visor_0/5')->nullable();
+            $table->string('visor_1_5')->nullable();
+            $table->string('visor_0_5')->nullable();
             $table->string('f_mold')->nullable();
             $table->string('b_mold')->nullable();
             $table->string('extra_stitch')->nullable();

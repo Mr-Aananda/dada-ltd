@@ -72,16 +72,16 @@
                         <div class="flex space-x-4 mt-4">
                             <!-- Bayer PO -->
                             <div class="w-1/3">
-                                <x-input-label for="bayer_po" :value="__('Bayer PO')" />
-                                <x-text-input id="bayer_po" class="block mt-1 w-full" type="text" name="bayer_po" :value="old('bayer_po')" placeholder="Enter Bayer PO" />
-                                <x-input-error :messages="$errors->get('bayer_po')" class="mt-2" />
+                                <x-input-label for="buyer_po" :value="__('Buyer PO')" />
+                                <x-text-input id="buyer_po" class="block mt-1 w-full" type="text" name="buyer_po" :value="old('buyer_po')" placeholder="Enter Buyer PO" />
+                                <x-input-error :messages="$errors->get('buyer_po')" class="mt-2" />
                             </div>
 
                             <!-- Bayer -->
                             <div class="w-1/3">
-                                <x-input-label for="bayer" :value="__('Bayer')" />
-                                <x-text-input id="bayer" class="block mt-1 w-full" type="text" name="bayer" :value="old('bayer')" placeholder="Enter Bayer" />
-                                <x-input-error :messages="$errors->get('bayer')" class="mt-2" />
+                                <x-input-label for="buyer" :value="__('Buyer')" />
+                                <x-text-input id="buyer" class="block mt-1 w-full" type="text" name="buyer" :value="old('buyer')" placeholder="Enter Buyer" />
+                                <x-input-error :messages="$errors->get('buyer')" class="mt-2" />
                             </div>
 
                             <!-- SD Date -->
@@ -162,9 +162,9 @@
                                 <x-input-error :messages="$errors->get('v_pattern')" class="mt-2" />
                             </div>
                             <div class="w-1/4">
-                                <x-input-label for="c_Cutter" :value="__('C/Cutter')" />
-                                <x-text-input id="c_Cutter" class="block mt-1 w-full" type="text" name="c_Cutter" :value="old('c_Cutter')" placeholder="Enter C/Cutter" />
-                                <x-input-error :messages="$errors->get('c_Cutter')" class="mt-2" />
+                                <x-input-label for="c_cutter" :value="__('C/Cutter')" />
+                                <x-text-input id="c_cutter" class="block mt-1 w-full" type="text" name="c_cutter" :value="old('c_cutter')" placeholder="Enter C/Cutter" />
+                                <x-input-error :messages="$errors->get('c_cutter')" class="mt-2" />
                             </div>
 
                             <div class="w-1/4">
@@ -201,14 +201,14 @@
                             </div>
 
                             <div class="w-1/3">
-                                <x-input-label for="visor_1/5" :value="__('Visor - 1.5')" />
-                                <x-text-input id="visor_1/5" class="block mt-1 w-full" type="text" name="visor_1/5" :value="old('visor_1/5')" placeholder="Enter visor [1.5]" />
-                                <x-input-error :messages="$errors->get('visor_1/5')" class="mt-2" />
+                                <x-input-label for="visor_1_5" :value="__('Visor - 1.5')" />
+                                <x-text-input id="visor_1_5" class="block mt-1 w-full" type="text" name="visor_1_5" :value="old('visor_1_5')" placeholder="Enter visor [1.5]" />
+                                <x-input-error :messages="$errors->get('visor_1_5')" class="mt-2" />
                             </div>
                             <div class="w-1/3">
-                                <x-input-label for="visor_0/5" :value="__('Visor - 0.5')" />
-                                <x-text-input id="visor_0/5" class="block mt-1 w-full" type="text" name="visor_0/5" :value="old('visor_0/5')" placeholder="Enter visor [0.5]" />
-                                <x-input-error :messages="$errors->get('visor_0/5')" class="mt-2" />
+                                <x-input-label for="visor_0_5" :value="__('Visor - 0.5')" />
+                                <x-text-input id="visor_0_5" class="block mt-1 w-full" type="text" name="visor_0_5" :value="old('visor_0_5')" placeholder="Enter visor [0.5]" />
+                                <x-input-error :messages="$errors->get('visor_0_5')" class="mt-2" />
                             </div>
                         </div>
 
@@ -221,9 +221,9 @@
                             </div>
 
                             <div class="w-1/4">
-                                <x-input-label for="v_mold" :value="__('V/Mold')" />
-                                <x-text-input id="v_mold" class="block mt-1 w-full" type="text" name="v_mold" :value="old('v_mold')" placeholder="Enter V/Mold" />
-                                <x-input-error :messages="$errors->get('v_mold')" class="mt-2" />
+                                <x-input-label for="b_mold" :value="__('B/Mold')" />
+                                <x-text-input id="b_mold" class="block mt-1 w-full" type="text" name="b_mold" :value="old('b_mold')" placeholder="Enter B/Mold" />
+                                <x-input-error :messages="$errors->get('b_mold')" class="mt-2" />
                             </div>
 
                             <div class="w-1/4">

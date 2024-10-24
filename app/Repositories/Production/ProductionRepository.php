@@ -37,4 +37,12 @@ class ProductionRepository implements ProductionRepositoryInterface
     {
         return Production::orderBy('created_at', 'desc')->paginate($perPage);
     }
+
+    /**
+     * Return a new query builder for the Production model.
+     */
+    public function query()
+    {
+        return Production::query();
+    }
 }

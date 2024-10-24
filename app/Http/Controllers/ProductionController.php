@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductionRequest;
-use App\Models\Production;
 use App\Repositories\Production\ProductionRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductionController extends Controller
 {
@@ -21,9 +21,33 @@ class ProductionController extends Controller
      */
     public function index()
     {
-        $productions = $this->productionRepository->paginate(25);
+        // Initialize the query
+        $query = $this->productionRepository->query();
+
+        // Check for search inputs and filter the query accordingly
+        if (request()->filled('buyer')) {
+            $query->where('buyer', 'like', '%' . request()->input('buyer') . '%');
+        }
+
+        if (request()->filled('ps')) {
+            $query->where('ps', 'like', '%' . request()->input('ps') . '%');
+        }
+
+        if (request()->filled('ps_date')) {
+            $query->where('ps_date', request()->input('ps_date'));
+        }
+
+        if (request()->filled('style')) {
+            $query->where('style', 'like', '%' . request()->input('style') . '%');
+        }
+
+        // Fetch the filtered productions with pagination
+        $productions = $query->paginate(25);
+
+        // Return the view with the filtered productions
         return view('production.index', compact('productions'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -75,11 +99,24 @@ class ProductionController extends Controller
      */
     public function update(ProductionRequest $request, string $id)
     {
+        // Fetch the existing production data
+        $production = $this->productionRepository->find($id);
+
         // Fetch validated data
         $data = $request->validated();
 
+        // Check if a new image is uploaded
         if ($request->hasFile('image')) {
+            // Store the new image and update the data
             $data['image'] = $request->file('image')->store('production_images', 'public');
+
+            // Optionally, delete the old image if you want to clean up (ensure you handle this carefully)
+            if ($production->image) {
+                Storage::disk('public')->delete($production->image);
+            }
+        } else {
+            // If no new image, retain the existing image in the data
+            $data['image'] = $production->image;  // Keep the existing image
         }
 
         // Use repository to update the production data
@@ -88,6 +125,7 @@ class ProductionController extends Controller
         // Redirect with a success message
         return redirect()->route('production.index')->with('success', 'Production updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.

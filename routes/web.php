@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrlController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +31,11 @@ Route::middleware('auth')->group(function () {
     //URL Controllers
     Route::resource('url', UrlController::class);
     route::get('/s/{shortUrl}', [UrlController::class, 'redirectToMainUrl'])->name('url.redirect');
+});
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+    return "Storage link create successfully";
 });
 
 require __DIR__ . '/auth.php';

@@ -23,6 +23,55 @@
                             Create new
                         </a>
                     </header>
+                    <!-- Search Form -->
+                    <form action="{{ route('production.index') }}" method="GET" class="mt-4">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+                            <div>
+                                <x-text-input
+                                    type="text"
+                                    name="buyer"
+                                    id="buyer"
+                                    placeholder="Search by Buyer"
+                                    class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    :value="request('buyer')"
+                                />
+                            </div>
+                            <div>
+                                <x-text-input
+                                    type="text"
+                                    name="ps"
+                                    id="ps"
+                                    placeholder="Search by PS"
+                                    class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    :value="request('ps')"
+                                />
+                            </div>
+                            <div>
+                                <x-text-input
+                                    type="date"
+                                    name="ps_date"
+                                    id="ps_date"
+                                    class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    :value="request('ps_date')"
+                                />
+                            </div>
+                            <div>
+                                <x-text-input
+                                    type="text"
+                                    name="style"
+                                    id="style"
+                                    placeholder="Search by Style"
+                                    class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    :value="request('style')"
+                                />
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" class="inline-flex items-center px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </section>
 
                 <x-alert />
@@ -38,6 +87,7 @@
                                     <th class="py-3 px-4 text-left border-r border-gray-300">SST10</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">Buyer</th>
                                     <th class="py-3 px-4 text-left border-r border-gray-300">Qty</th>
+                                    <th class="py-3 px-4 text-left border-r border-gray-300">Image</th>
                                     <th class="py-3 px-4 text-right">Action</th>
                                 </tr>
                             </thead>
@@ -50,6 +100,13 @@
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->sst10 }}</td>
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->buyer }}</td>
                                         <td class="py-3 px-4 border-r border-gray-300">{{ $production->qty }}</td>
+                                        <td class="py-3 px-4 border-r border-gray-300">
+                                            @if ($production->image)
+                                                <img src="{{ asset('storage/' . $production->image) }}" alt="Production Image" class="h-16 w-16 object-cover rounded-md" />
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
 
                                         <td class="py-3 px-4 flex justify-end">
                                             <a href="{{ route('production.show', $production->id) }}" class="inline-flex items-center px-3 py-1 text-gray-700 bg-gray-200 border border-transparent rounded-md text-xs font-medium hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
