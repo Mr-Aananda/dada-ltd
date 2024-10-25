@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 no-print">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -107,3 +107,13 @@
         </div>
     </div>
 </nav>
+<style>
+        @media print {
+            .no-print {
+                display: none; /* Hide all elements with the class no-print */
+            }
+            .print-only {
+                display: block; /* Ensure the section you want to show is displayed */
+            }
+        }
+</style>

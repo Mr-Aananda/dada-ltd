@@ -7,6 +7,9 @@ use App\Repositories\Production\ProductionRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProductionExport;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class ProductionController extends Controller
 {
@@ -135,12 +138,21 @@ class ProductionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function exportExcel($id)
     {
-        // Use repository to delete the production data
-        $this->productionRepository->delete($id);
+        // Fetch the production record by ID
+        $production = $this->productionRepository->find($id);
 
-        // Redirect with a success message
-        return redirect()->route('production.index')->with('success', 'Production deleted successfully.');
+        // Pass the production instance to the export class
+        return Excel::download(new ProductionExport($production), 'production_details.xlsx');
     }
+
+    public function exportPdf($id)
+    {
+        $production = $this->productionRepository->find($id);
+        $pdf = FacadePdf::loadView('production.pdf', compact('production'));
+
+        return $pdf->download('production_details_' . $id . '.pdf');
+    }
+
 }

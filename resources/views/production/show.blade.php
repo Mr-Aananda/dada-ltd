@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="header" class="no-print">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Production Details') }}
         </h2>
@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <section class="mb-6">
+               <section class="mb-6">
                     <header class="flex items-center justify-between">
                         <div>
                             <h2 class="text-lg font-bold text-gray-900">
@@ -19,18 +19,36 @@
                             </p>
                         </div>
 
-                        <a href="{{ route('production.index') }}" class="inline-flex items-center px-3 py-1 text-gray-700 bg-gray-200 border border-transparent rounded-md text-xs font-bold hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                            Back to Productions List
-                        </a>
+                        <!-- Button Group -->
+                        <div id="button-group" class="flex space-x-2 no-print">
+                            <a href="{{ route('production.index') }}" class="inline-flex items-center px-3 py-1 text-gray-700 bg-gray-200 border border-transparent rounded-md text-xs font-bold hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                Back
+                            </a>
+
+                            <!-- Excel Export Button -->
+                            <a href="{{ route('production.exportExcel', $production->id) }}" class="inline-flex items-center px-3 py-1 text-green-700 bg-green-200 border border-transparent rounded-md text-xs font-bold hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                Excel
+                            </a>
+
+                            <!-- PDF Export Button -->
+                            <a href="{{ route('production.exportPdf', $production->id) }}" class="inline-flex items-center px-3 py-1 text-red-700 bg-red-200 border border-transparent rounded-md text-xs font-bold hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                PDF
+                            </a>
+
+                            <!-- Print Button -->
+                            <button onclick="window.print()" class="inline-flex items-center px-3 py-1 text-blue-700 bg-blue-200 border border-transparent rounded-md text-xs font-bold hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Print
+                            </button>
+                        </div>
                     </header>
                 </section>
 
-                <section>
+                <section class="print-only">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <h3 class="text-sm font-bold text-gray-700">Image</h3>
                              @if ($production->image)
-                                <img src="{{ asset('storage/' . $production->image) }}" alt="Production Image" class="h-16 w-16 object-cover rounded-md" />
+                                <img src="{{ asset('storage/' . $production->image) }}" alt="Production Image" class="h-16 w-30 object-cover rounded-md" />
                             @else
                                 No Image
                             @endif
@@ -193,7 +211,7 @@
                     </div>
                 </section>
 
-                <section class="mt-6">
+                <section class="mt-6 no-print">
                     <a href="{{ route('production.edit', $production->id) }}" class="inline-flex items-center px-3 py-1 text-gray-700 bg-gray-200 border border-transparent rounded-md text-xs font-bold hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                         Edit Production
                     </a>
@@ -201,4 +219,16 @@
             </div>
         </div>
     </div>
+
+<style>
+        @media print {
+            .no-print {
+                display: none; /* Hide all elements with the class no-print */
+            }
+            .print-only {
+                display: block; /* Ensure the section you want to show is displayed */
+            }
+        }
+</style>
+
 </x-app-layout>

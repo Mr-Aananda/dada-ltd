@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
 
     Route::resource('production', ProductionController::class);
+    Route::get('/productions/{id}/export/excel', [ProductionController::class, 'exportExcel'])->name('production.exportExcel');
+    Route::get('/productions/{id}/export/pdf', [ProductionController::class, 'exportPdf'])->name('production.exportPdf');
 
     //URL Controllers
     Route::resource('url', UrlController::class);
